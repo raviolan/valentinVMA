@@ -14,7 +14,8 @@ function hidePopup(callback) {
         votePopup.classList.add('hidden');
         votePopup.classList.remove('animate-out');
         if (callback) callback();
-    }, 300);
+    }, 220); // match exit duration
+
 }
 
 voteBtn.addEventListener('click', () => {

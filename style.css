@@ -194,6 +194,7 @@ video {
     flex-direction: column;
     padding: 1rem;
     z-index: 1000;
+    transform-origin: bottom right;
 }
 
 .popup-actions {
@@ -244,30 +245,45 @@ video {
     display: none;
 }
 
-/* Animate popup: fade and slide up */
+/* Genie-style popup enter */
 @keyframes popupEnter {
     0% {
         opacity: 0;
-        transform: translateY(30px) scale(0.98);
+        transform: scale(0.8) translateY(30px);
+        transform-origin: bottom right;
     }
 
     100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
+        transform-origin: bottom right;
     }
 }
 
+/* Genie-style popup exit */
 @keyframes popupExit {
     0% {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: scale(1) translateY(0);
+        transform-origin: bottom right;
     }
 
     100% {
         opacity: 0;
-        transform: translateY(30px) scale(0.98);
+        transform: scaleY(0.05) scaleX(0.3) translateY(60px);
+        transform-origin: bottom right;
     }
 }
+
+/* Apply animation */
+.popup.animate-in {
+    animation: popupEnter 0.25s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+.popup.animate-out {
+    animation: popupExit 0.22s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
 
 /* Default hidden state */
 .popup.hidden {
