@@ -1,0 +1,303 @@
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ABC Whyte Inktrap - for headings */
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url('fonts/ValentinExperienceWhyteInktrap-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Manrope - for body */
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Manrope';
+    src: url('fonts/Manrope-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+
+    /* Layered background */
+    background:
+        url("images/Gradient_5.jpg") no-repeat center center;
+    background-size: cover;
+    background-repeat: no-repeat, repeat;
+    background-position: center center, center center;
+    background-blend-mode: soft-light;
+    background-attachment: scroll;
+    opacity: 0.95;
+    animation: gradientFlow 20s ease infinite;
+    color: #222;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+h {
+    font-family: 'Whyte Inktrap', sans-serif;
+    font-weight: 500;
+    color: #3a3a3a;
+}
+
+/* 
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+    */
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #3a3a3a;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    text-align: center;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* Video Gallery Layout */
+.video-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.video-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem;
+    border-radius: 24px;
+    width: 280px;
+    /* Larger on desktop */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Aspect-ratio wrapper for vertical videos */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #000;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+
+.video-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+
+video {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.video-card h3 {
+    margin: 0.5rem 0 0.2rem;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.video-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Vote Button */
+#voteBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ffd6e0;
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 4px 16px rgba(255, 200, 200, 0.3);
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 1001;
+}
+
+#voteBtn:hover {
+    background: #ffe2ec;
+    transform: translateY(-2px);
+}
+
+/* Popup Form */
+.popup {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 400px;
+    max-width: 90vw;
+    height: 100vh;
+    /* updated for tall forms */
+    max-height: 90vh;
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #ffe4f0;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+#minimizePopup,
+#closePopup {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #f3f3f3;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+
+#minimizePopup:hover,
+#closePopup:hover {
+    background-color: #e1e1e1;
+}
+
+#reopenPopup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffd6e0;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+}
+
+#reopenPopup.hidden {
+    display: none;
+}
+
+/* Animate popup: fade and slide up */
+@keyframes popupEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes popupExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+}
+
+/* Default hidden state */
+.popup.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* Apply animation when showing */
+.popup.animate-in {
+    animation: popupEnter 0.4s ease-out forwards;
+}
+
+/* Optional: add exit animation */
+.popup.animate-out {
+    animation: popupExit 0.3s ease-in forwards;
+}
+
+/* Responsive tweaks */
+@media screen and (max-width: 600px) {
+    .video-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    #voteBtn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .popup {
+        width: 90vw;
+    }
+}
