@@ -117,6 +117,16 @@ reopenBtn.addEventListener('click', () => {
                     // Convert to data URL and set as poster
                     const dataURL = canvas.toDataURL('image/jpeg', 0.78);
                     video.setAttribute('poster', dataURL);
+
+                    // Reset playback position to the beginning so user playback starts at 0
+                    if (video.currentTime !== 0) {
+                        await new Promise((resolve) => {
+                            const onSeekedBack = () => { video.removeEventListener('seeked', onSeekedBack); resolve(); };
+                            video.addEventListener('seeked', onSeekedBack, { once: true });
+                            try { video.currentTime = 0; } catch { resolve(); }
+                        });
+                    }
+                    video.pause();
                 } catch (err) {
                     console.warn('Thumbnail generation failed for:', video.currentSrc || video.src, err);
                 } finally {
