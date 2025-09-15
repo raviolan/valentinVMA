@@ -87,10 +87,12 @@ p {
 
 /* Video Gallery Layout */
 .video-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: calc(3 * 280px + 2 * 30px);
+    margin: 0 auto;
     gap: 30px;
+    justify-content: center;
 }
 
 .video-card {
@@ -105,6 +107,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-self: center;
 }
 
 
@@ -126,6 +129,10 @@ p {
     height: 100%;
     object-fit: cover;
     border-radius: 12px;
+}
+
+.video-wrapper video.video-contain {
+    object-fit: contain;
 }
 
 
